@@ -1,0 +1,109 @@
+.education-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  opacity: 1;
+  height: auto;
+  min-height: 60vh;
+  width: var(--cWidth);
+  max-width: 1400px;
+  margin: auto;
+  padding: 100px 0;
+  z-index: 15;
+}
+
+.education-container {
+  width: 100%;
+}
+
+.education-section .section-title {
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  font-weight: 400;
+  color: var(--accentColor);
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.education-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+}
+
+.education-box {
+  flex: 1;
+  padding: 40px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.education-box:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--accentColor);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.education-box h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.education-box h5 {
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: var(--accentColor);
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+
+.education-box p {
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+@media only screen and (max-width: 1200px) {
+  .education-flex {
+    gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .education-section {
+    padding: 80px 20px;
+    width: 100%;
+  }
+  .education-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+  .education-box {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .education-section {
+    width: var(--cWidth);
+    max-width: 1600px;
+    padding: 120px 0;
+  }
+}
