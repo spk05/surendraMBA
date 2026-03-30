@@ -133,5 +133,27 @@ body {
 @media screen and (max-width: 900px) {
   .techstack h2 {
     font-size: 40px;
+    top: 80px;
+  }
+
+  .techstack {
+    margin-bottom: -60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    --cWidth: calc(100% - 20px);
+  }
+
+  .techstack h2 {
+    font-size: 28px;
+    top: 60px;
+    letter-spacing: 2px;
+  }
+
+  .techstack {
+    height: 70vh;
+    margin-bottom: -40px;
   }
 }

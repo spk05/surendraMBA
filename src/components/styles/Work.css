@@ -291,11 +291,11 @@
   }
 
   .carousel-arrow-left {
-    left: 10px;
+    left: 0;
   }
 
   .carousel-arrow-right {
-    right: 10px;
+    right: 0;
   }
 }
 
@@ -327,5 +327,56 @@
 
   .work-image img {
     max-height: 250px;
+  }
+}
+
+/* ── Small phones ── */
+@media only screen and (max-width: 480px) {
+  .work-section {
+    padding: 40px 0;
+  }
+
+  .work-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .carousel-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .carousel-number h3 {
+    font-size: 26px;
+  }
+
+  .carousel-details h4 {
+    font-size: 18px;
+  }
+
+  .carousel-category {
+    font-size: 13px;
+  }
+
+  .carousel-tools p {
+    font-size: 12px;
+  }
+
+  .carousel-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  .carousel-arrow-left {
+    left: 2px;
+  }
+
+  .carousel-arrow-right {
+    right: 2px;
+  }
+
+  .work-image img {
+    max-height: 200px;
   }
 }
