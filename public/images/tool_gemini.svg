@@ -1,4 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <rect width="200" height="200" rx="30" fill="#4285F4"/>
-  <text x="100" y="115" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="bold" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle">Gemini</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="white"/>
+  <defs>
+    <linearGradient id="gG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="30%" stop-color="#9B72CB"/>
+      <stop offset="70%" stop-color="#D96570"/>
+      <stop offset="100%" stop-color="#F9AB00"/>
+    </linearGradient>
+  </defs>
+  <path d="M100 20 C100 20 105 80 160 100 C105 120 100 180 100 180 C100 180 95 120 40 100 C95 80 100 20 100 20Z" fill="url(#gG)"/>
 </svg>

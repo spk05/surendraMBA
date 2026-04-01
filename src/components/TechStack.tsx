@@ -13,17 +13,17 @@ import {
 
 const textureLoader = new THREE.TextureLoader();
 const imageUrls = [
-  "/images/tool_python.png",
-  "/images/tool_jira.svg",
-  "/images/tool_tableau.svg",
-  "/images/tool_powerbi.svg",
-  "/images/tool_ai.svg",
-  "/images/tool_claude.svg",
-  "/images/tool_chatgpt.svg",
-  "/images/tool_gemini.svg",
-  "/images/tool_ms365.svg",
-  "/images/tool_azure.svg",
-  "/images/tool_excel.svg",
+  "/images/tool_python.png",   // Python - official logo PNG
+  "/images/tool_jira.svg",     // Jira - branded SVG
+  "/images/tool_tableau.png",  // Tableau - downloaded PNG
+  "/images/tool_powerbi.png",  // PowerBI - downloaded PNG
+  "/images/tool_ai.svg",       // AI - neural network SVG
+  "/images/tool_claude.png",   // Claude - downloaded PNG
+  "/images/tool_chatgpt.png",  // ChatGPT - downloaded PNG
+  "/images/tool_gemini.svg",   // Gemini - branded SVG
+  "/images/tool_ms365.svg",    // MS365 - branded SVG
+  "/images/tool_azure.png",    // Azure - downloaded PNG
+  "/images/tool_excel.svg",    // Excel - branded SVG
 ];
 const textures = imageUrls.map((url) => textureLoader.load(url));
 
