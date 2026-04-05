@@ -11,21 +11,60 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-const textureLoader = new THREE.TextureLoader();
+
 const imageUrls = [
   "/images/tool_python.png",   // Python - official logo PNG
   "/images/tool_jira.svg",     // Jira - branded SVG
   "/images/tool_tableau.png",  // Tableau - downloaded PNG
   "/images/tool_powerbi.png",  // PowerBI - downloaded PNG
   "/images/tool_ai.svg",       // AI - neural network SVG
-  "/images/tool_claude.png",   // Claude - downloaded PNG
   "/images/tool_chatgpt.png",  // ChatGPT - downloaded PNG
   "/images/tool_gemini.svg",   // Gemini - branded SVG
   "/images/tool_ms365.svg",    // MS365 - branded SVG
   "/images/tool_azure.png",    // Azure - downloaded PNG
   "/images/tool_excel.svg",    // Excel - branded SVG
 ];
-const textures = imageUrls.map((url) => textureLoader.load(url));
+const textures = imageUrls.map((url) => {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext("2d")!;
+  
+  // Fill background with solid white instead of leaving it transparent (which renders as black)
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  const img = new Image();
+  img.src = url;
+  const texture = new THREE.CanvasTexture(canvas);
+  img.onload = () => {
+    const maxDim = 320; // Provides generous padding so ClampToEdge never hits the logo pixels
+    let w = img.width || 512;
+    let h = img.height || 512;
+    const ratio = w / h;
+    if (ratio > 1) {
+      w = maxDim;
+      h = maxDim / ratio;
+    } else {
+      h = maxDim;
+      w = maxDim * ratio;
+    }
+    const x = (512 - w) / 2;
+    const y = (512 - h) / 2;
+    ctx.drawImage(img, x, y, w, h);
+    texture.needsUpdate = true;
+  };
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  
+  // repeat 4x horizontally, 2x vertically to preserve 1:1 aspect ratio at the equator.
+  texture.repeat.set(4, 2); 
+  // Offset essentially places this repeated band straight down the middle (V: 0.25 to 0.75)!
+  texture.offset.set(0, -0.5); 
+  
+  return texture;
+});
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
@@ -175,6 +214,8 @@ const TechStack = () => {
 
       <Canvas
         shadows
+        frameloop={isActive ? "always" : "demand"}
+        dpr={[1, 1.5]}
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}

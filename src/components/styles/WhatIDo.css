@@ -38,7 +38,6 @@
   display: flex;
   flex-direction: column;
   height: auto !important;
-  min-height: 500px !important;
   gap: 50px;
   margin-left: 200px;
   position: relative;
@@ -223,7 +222,7 @@
   animation: whatBorders 1.2s 1 forwards;
 }
 .what-border2 svg {
-  height: 500px;
+  height: 100%;
   top: 50%;
   transform: translateY(-50%);
   position: absolute;
@@ -272,7 +271,7 @@
     margin-right: 20%;
   }
   .what-box-in {
-    height: 550px;
+    height: auto;
   }
   .what-content h3 {
     font-size: 28px;
@@ -313,7 +312,7 @@
     padding-bottom: 50px;
   }
   .what-box-in {
-    height: 650px;
+    height: auto;
     margin-left: -50px;
   }
   .what-content {
@@ -349,7 +348,7 @@
     justify-content: left;
   }
   .what-box:last-child {
-    height: 500px;
+    height: auto;
   }
   .what-box {
     width: 500px;
@@ -361,7 +360,7 @@
   }
   .what-box-in {
     margin-left: 0px;
-    height: 600px;
+    height: auto;
   }
   .what-content h5,
   .what-content-flex {

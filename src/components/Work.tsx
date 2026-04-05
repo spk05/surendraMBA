@@ -7,18 +7,33 @@ const projects = [
   {
     title: "HR Digital Platform",
     category: "Dassault Systèmes HR Digital Transformation",
+    description: [
+      "How I did it: Blended stakeholder insight, regulatory alignment, and product execution to unify fragmented HR systems.",
+      "Led the end-to-end rollout of a global HR platform across France, North America, and India by translating regional requirements into a single, scalable solution. Conducted structured stakeholder interviews to capture business needs, while embedding country-specific compliance and legal standards into the design.",
+      "I centralized workflows into one secure web application, implementing role-based access controls and governance frameworks to ensure data integrity. By aligning execution with defined business goals and tracking measurable outcomes, the platform reduced manual effort and contributed to significant annual cost savings."
+    ],
     tools: "Stakeholder Management, Business Needs Analysis, Cross-functional Collaboration, Program Strategy",
     image: "/images/hr_platform.png",
   },
   {
     title: "Simulation Modernization",
     category: "ASU Learning Enterprise Digital Experience Transformation",
+    description: [
+      "How I did it: Combined problem diagnosis, rapid prototyping, and AI-assisted development to reimagine legacy systems.",
+      "Identified critical usability and accessibility gaps in legacy Visual Basic simulations and rearchitected them into modern, responsive web dashboards. Leveraged Claude AI to accelerate code conversion from Visual Basic to HTML, dramatically reducing redevelopment time.",
+      "The result was a streamlined, browser-based experience that improved usability and scalability, directly enhancing the learning experience for 100+ students while eliminating dependency on outdated software."
+    ],
     tools: "Problem Structuring, UX Strategy, AI Enablement, Data-driven Decision Making",
     image: "/images/sim_modernization.png",
   },
   {
     title: "Game titles",
     category: "Quality Assurance - Ubisoft",
+    description: [
+      "How I did it: Instituted structured quality systems and proactive risk identification to ensure flawless global releases.",
+      "Played a key role in the pre-launch quality assurance of major titles including Just Dance 2021 and Riders Republic, identifying and escalating 100+ critical issues prior to release. Delivered concise quality reports to senior leadership, enabling informed go-live decisions.",
+      "To scale impact, I developed standardized testing frameworks and onboarding documentation, and trained new team members to ensure consistency in quality benchmarks. This approach improved release readiness, accelerated onboarding, and strengthened overall product reliability."
+    ],
     tools: "Test Planning, Defect Tracking, Cross-functional Coordination, Release Support",
     image: "/images/game_titles.png",
   },
@@ -96,6 +111,13 @@ const Work = () => {
                         <p className="carousel-category">
                           {project.category}
                         </p>
+                        <div className="carousel-description">
+                          {project.description.map((paragraph, i) => (
+                            <p key={i}>
+                              {i === 0 ? <strong>{paragraph}</strong> : paragraph}
+                            </p>
+                          ))}
+                        </div>
                         <div className="carousel-tools">
                           <span className="tools-label">Exposure</span>
                           <p>{project.tools}</p>

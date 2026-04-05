@@ -44,11 +44,21 @@
   margin-bottom: 50px;
 }
 
-.career-info-box p {
+.career-info-desc {
   width: 40%;
+}
+
+.career-info-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.career-info-desc p {
   font-size: 18px;
   font-weight: 300;
   margin: 0;
+  width: 100%;
 }
 
 .career-info-in {
@@ -162,7 +172,7 @@
     font-size: 40px;
   }
 
-  .career-info-box p {
+  .career-info-desc p {
     font-size: 14px;
   }
 
@@ -171,7 +181,7 @@
     gap: 20px;
   }
 
-  .career-info-box p {
+  .career-info-desc {
     width: 45%;
   }
 }
@@ -192,7 +202,7 @@
   }
 
   .career-info-in,
-  .career-info-box p {
+  .career-info-desc {
     width: 100%;
     padding-left: 10%;
     box-sizing: border-box;
@@ -228,7 +238,7 @@
   }
 
   .career-info-in,
-  .career-info-box p {
+  .career-info-desc {
     padding-left: 5%;
   }
 
