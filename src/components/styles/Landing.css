@@ -395,3 +395,28 @@ h2.landing-info-h2 {
     font-size: 75px;
   }
 }
+
+/* ── Very small phones (360px) ── */
+@media screen and (max-width: 360px) {
+  .landing-intro h1 {
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .landing-intro h2 {
+    font-size: 15px;
+  }
+
+  .landing-info h3 {
+    font-size: 14px;
+  }
+
+  .landing-info h2 {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  h2.landing-info-h2 {
+    font-size: 28px;
+  }
+}

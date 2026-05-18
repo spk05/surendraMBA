@@ -1,6 +1,4 @@
-import {
-  FaLinkedinIn,
-} from "react-icons/fa6";
+import { FaLinkedinIn } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
@@ -54,30 +52,52 @@ const SocialIcons = () => {
   }, []);
 
   return (
-    <div className="icons-section">
-      <div className="social-icons" data-cursor="icons" id="social">
-        <span>
-          <a
-            href="http://www.linkedin.com/in/surendrap2"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaLinkedinIn />
-          </a>
-        </span>
+    <>
+      <div className="icons-section">
+        <div className="social-icons" data-cursor="icons" id="social">
+          <span>
+            <a
+              href="http://www.linkedin.com/in/surendrap2"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaLinkedinIn />
+            </a>
+          </span>
+        </div>
+        <a
+          className="resume-button"
+          href="/SurendraS.Pathak.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <HoverLinks text="RESUME" />
+          <span>
+            <TbNotes />
+          </span>
+        </a>
       </div>
-      <a
-        className="resume-button"
-        href="/SurendraS.Pathak.pdf"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <HoverLinks text="RESUME" />
-        <span>
+
+      {/* Mobile bottom bar — shown only on small screens */}
+      <div className="mobile-bottom-bar">
+        <a
+          href="http://www.linkedin.com/in/surendrap2"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FaLinkedinIn />
+          LinkedIn
+        </a>
+        <a
+          href="/SurendraS.Pathak.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
           <TbNotes />
-        </span>
-      </a>
-    </div>
+          Resume
+        </a>
+      </div>
+    </>
   );
 };
 

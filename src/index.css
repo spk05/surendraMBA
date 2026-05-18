@@ -36,6 +36,15 @@ h6 {
 body {
   overflow: hidden;
 }
+/* Allow native scrolling on mobile */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
 a {
   color: inherit;

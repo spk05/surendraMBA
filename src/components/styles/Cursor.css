@@ -23,11 +23,18 @@
 .cursor-disable {
   --size: 0px;
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 600px) and (pointer: fine) {
   .cursor-main {
     --size: 50px;
   }
   .cursor-disable {
     --size: 0px;
+  }
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-main {
+    display: none !important;
   }
 }

@@ -45,6 +45,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <Education />
             <Career />
             <Work />
+            {/* TechStack: full 3D on desktop, hidden on mobile (too heavy) */}
             {isDesktopView && (
               <Suspense fallback={<div>Loading....</div>}>
                 <TechStack />

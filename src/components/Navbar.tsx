@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
@@ -9,6 +9,8 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother;
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
@@ -39,6 +41,15 @@ const Navbar = () => {
       ScrollSmoother.refresh(true);
     });
   }, []);
+
+  const handleMobileNav = (href: string) => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
   return (
     <>
       <div className="header">
@@ -71,6 +82,34 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
+
+        {/* Hamburger button — visible on mobile only */}
+        <button
+          className={`hamburger${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation"
+          data-cursor="disable"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+
+      {/* Mobile full-screen overlay */}
+      <div className={`mobile-nav-overlay${menuOpen ? " open" : ""}`}>
+        <a href="#about" onClick={() => handleMobileNav("#about")}>ABOUT</a>
+        <a href="#work" onClick={() => handleMobileNav("#work")}>WORK</a>
+        <a href="#contact" onClick={() => handleMobileNav("#contact")}>CONTACT</a>
+        <a
+          href="http://www.linkedin.com/in/surendrap2"
+          className="mobile-nav-connect"
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => setMenuOpen(false)}
+        >
+          linkedin.com/in/surendrap2
+        </a>
       </div>
 
       <div className="landing-circle1"></div>
