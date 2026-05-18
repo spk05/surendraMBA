@@ -203,6 +203,9 @@
   bottom: 40px;
   top: inherit;
   z-index: 9;
+  /* Prevent overflow on mobile */
+  max-width: calc(100vw - 30px);
+  overflow: hidden;
 }
 
 .landing-info h3 {
@@ -291,6 +294,30 @@ h2.landing-info-h2 {
 
   h2.landing-info-h2 {
     font-size: 38px;
+  }
+}
+
+/* ── Mobile only: fix text overflow in landing section ── */
+@media screen and (max-width: 767px) {
+  h2.landing-info-h2 {
+    width: 100%;
+    word-break: break-word;
+    white-space: normal;
+    font-size: 32px;
+  }
+
+  .landing-info h2 {
+    flex-wrap: wrap;
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .landing-info h3 {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 }
 

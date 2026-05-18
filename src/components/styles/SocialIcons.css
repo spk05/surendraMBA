@@ -121,6 +121,13 @@ div.resume-button span {
   .mobile-bottom-bar {
     display: flex;
   }
+  /* Hide the rotating desktop resume button and social icons on mobile */
+  .resume-button {
+    display: none !important;
+  }
+  .icons-section {
+    display: none !important;
+  }
   /* push page content above the bottom bar */
   #smooth-wrapper, #smooth-content {
     padding-bottom: 60px;
