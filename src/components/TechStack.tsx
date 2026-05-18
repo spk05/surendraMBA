@@ -23,6 +23,8 @@ const imageUrls = [
   "/images/tool_ms365.svg",    // MS365 - branded SVG
   "/images/tool_azure.png",    // Azure - downloaded PNG
   "/images/tool_excel.svg",    // Excel - branded SVG
+  "/images/tool_figma.svg",    // Figma - branded SVG
+  "/images/tool_miro.svg",     // Miro - branded SVG
 ];
 const textures = imageUrls.map((url) => {
   const canvas = document.createElement("canvas");
