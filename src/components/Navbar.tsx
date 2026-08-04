@@ -22,7 +22,19 @@ const Navbar = () => {
       ignoreMobileResize: true,
     });
 
-    smoother.scrollTop(0);
+    if (window.location.hash) {
+      setTimeout(() => {
+        const hash = window.location.hash;
+        if (window.innerWidth > 1024 && smoother) {
+          smoother.scrollTo(hash, true, "top top");
+        } else {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 600);
+    } else {
+      smoother.scrollTop(0);
+    }
     smoother.paused(true);
 
     let links = document.querySelectorAll(".header ul a");
@@ -33,7 +45,10 @@ const Navbar = () => {
           e.preventDefault();
           let elem = e.currentTarget as HTMLAnchorElement;
           let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
+          if (section) {
+            window.history.pushState(null, "", section);
+            smoother.scrollTo(section, true, "top top");
+          }
         }
       });
     });
