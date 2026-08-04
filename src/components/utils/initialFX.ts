@@ -1,16 +1,34 @@
 import { SplitText } from "gsap/SplitText";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { smoother } from "../Navbar";
 
 export function initialFX() {
   document.body.style.overflowY = "auto";
-  smoother.paused(false);
+  if (smoother) {
+    smoother.paused(false);
+  }
   document.getElementsByTagName("main")[0].classList.add("main-active");
   gsap.to("body", {
     backgroundColor: "#0a0e17",
     duration: 0.5,
     delay: 1,
   });
+
+  if (window.location.hash) {
+    const hash = window.location.hash;
+    const targetEl = document.querySelector(hash);
+    if (targetEl) {
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+        if (window.innerWidth > 1024 && smoother) {
+          smoother.scrollTo(targetEl, true, "top top");
+        } else {
+          targetEl.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
+  }
 
   var landingText = new SplitText(
     [".landing-info h3", ".landing-intro h2", ".landing-intro h1"],

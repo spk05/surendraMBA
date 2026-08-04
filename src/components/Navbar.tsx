@@ -28,19 +28,22 @@ const Navbar = () => {
       const targetEl = document.querySelector(hash);
       if (!targetEl) return;
 
+      if (smoother) {
+        smoother.paused(false);
+      }
       ScrollTrigger.refresh();
       if (window.innerWidth > 1024 && smoother) {
-        smoother.scrollTo(targetEl, true, "top 70px");
+        smoother.scrollTo(targetEl, true, "top top");
       } else {
         targetEl.scrollIntoView({ behavior: "smooth" });
       }
     };
 
     if (window.location.hash) {
-      setTimeout(scrollToTargetHash, 200);
-      setTimeout(scrollToTargetHash, 700);
-      setTimeout(scrollToTargetHash, 1500);
-      setTimeout(scrollToTargetHash, 2500);
+      setTimeout(scrollToTargetHash, 300);
+      setTimeout(scrollToTargetHash, 1000);
+      setTimeout(scrollToTargetHash, 2000);
+      setTimeout(scrollToTargetHash, 3200);
 
       window.addEventListener("load", scrollToTargetHash);
       if (document.fonts) {
@@ -62,9 +65,10 @@ const Navbar = () => {
           if (section) {
             window.history.pushState(null, "", section);
             const target = document.querySelector(section);
-            if (target) {
+            if (target && smoother) {
+              smoother.paused(false);
               ScrollTrigger.refresh();
-              smoother.scrollTo(target, true, "top 70px");
+              smoother.scrollTo(target, true, "top top");
             }
           }
         }
