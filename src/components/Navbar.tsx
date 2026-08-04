@@ -22,16 +22,21 @@ const Navbar = () => {
       ignoreMobileResize: true,
     });
 
+    const scrollToTargetHash = () => {
+      const hash = window.location.hash;
+      if (!hash) return;
+      ScrollTrigger.refresh();
+      if (window.innerWidth > 1024 && smoother) {
+        smoother.scrollTo(hash, true, "top top");
+      } else {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
     if (window.location.hash) {
-      setTimeout(() => {
-        const hash = window.location.hash;
-        if (window.innerWidth > 1024 && smoother) {
-          smoother.scrollTo(hash, true, "top top");
-        } else {
-          const el = document.querySelector(hash);
-          if (el) el.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 600);
+      setTimeout(scrollToTargetHash, 400);
+      setTimeout(scrollToTargetHash, 1100);
     } else {
       smoother.scrollTop(0);
     }
