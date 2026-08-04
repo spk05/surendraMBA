@@ -25,18 +25,27 @@ const Navbar = () => {
     const scrollToTargetHash = () => {
       const hash = window.location.hash;
       if (!hash) return;
+      const targetEl = document.querySelector(hash);
+      if (!targetEl) return;
+
       ScrollTrigger.refresh();
       if (window.innerWidth > 1024 && smoother) {
-        smoother.scrollTo(hash, true, "top top");
+        smoother.scrollTo(targetEl, true, "top 70px");
       } else {
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        targetEl.scrollIntoView({ behavior: "smooth" });
       }
     };
 
     if (window.location.hash) {
-      setTimeout(scrollToTargetHash, 400);
-      setTimeout(scrollToTargetHash, 1100);
+      setTimeout(scrollToTargetHash, 200);
+      setTimeout(scrollToTargetHash, 700);
+      setTimeout(scrollToTargetHash, 1500);
+      setTimeout(scrollToTargetHash, 2500);
+
+      window.addEventListener("load", scrollToTargetHash);
+      if (document.fonts) {
+        document.fonts.ready.then(scrollToTargetHash);
+      }
     } else {
       smoother.scrollTop(0);
     }
@@ -52,7 +61,11 @@ const Navbar = () => {
           let section = elem.getAttribute("data-href");
           if (section) {
             window.history.pushState(null, "", section);
-            smoother.scrollTo(section, true, "top top");
+            const target = document.querySelector(section);
+            if (target) {
+              ScrollTrigger.refresh();
+              smoother.scrollTo(target, true, "top 70px");
+            }
           }
         }
       });
