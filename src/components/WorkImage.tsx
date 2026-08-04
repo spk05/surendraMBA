@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MdArrowForward } from "react-icons/md";
 
 interface Props {
   image: string;
@@ -10,6 +11,7 @@ interface Props {
 const WorkImage = (props: Props) => {
   const [isVideo, setIsVideo] = useState(false);
   const [video, setVideo] = useState("");
+
   const handleMouseEnter = async () => {
     if (props.video) {
       setIsVideo(true);
@@ -20,16 +22,37 @@ const WorkImage = (props: Props) => {
     }
   };
 
+  const content = (
+    <div
+      className="work-image-in"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => setIsVideo(false)}
+    >
+      <img src={props.image} alt={props.alt} />
+      {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
+      {props.link && (
+        <div className="work-link">
+          <MdArrowForward style={{ transform: "rotate(-45deg)" }} />
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div className="work-image">
-      <div
-        className="work-image-in"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={() => setIsVideo(false)}
-      >
-        <img src={props.image} alt={props.alt} />
-        {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
-      </div>
+      {props.link ? (
+        <a
+          href={props.link}
+          target="_blank"
+          rel="noreferrer"
+          data-cursor="disable"
+          title={`Visit ${props.alt || "project website"}`}
+        >
+          {content}
+        </a>
+      ) : (
+        content
+      )}
     </div>
   );
 };

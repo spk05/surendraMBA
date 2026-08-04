@@ -3,7 +3,50 @@ import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
-const projects = [
+interface ProjectLink {
+  label: string;
+  url: string;
+}
+
+interface Project {
+  title: string;
+  category: string;
+  status?: string;
+  description: string[];
+  tools: string;
+  image: string;
+  link?: string;
+  stats?: string[];
+  links?: ProjectLink[];
+}
+
+const projects: Project[] = [
+  {
+    title: "Wayfarer",
+    category: "Live Voice-AI Companion for Outdoor Exploration",
+    status: "In Beta — Pre-Launch",
+    description: [
+      "An AI companion that talks with you during a hike, walk, or ride, not before or after it. Built solo from market research through a working iOS product currently in beta testing ahead of App Store launch."
+    ],
+    tools: "Product Strategy, Market Research, iOS Beta, Voice AI",
+    image: "/images/wayfarer_logo.png",
+    link: "https://www.linkedin.com/company/wayfarer-ai/",
+    stats: [
+      "201 survey respondents",
+      "61.2% purchase intent",
+      "0 of 6 competitors reviewed operate live, in-the-moment AI"
+    ],
+    links: [
+      {
+        label: "Market Opportunity Report (PDF)",
+        url: "/wayfarer-market-report.pdf"
+      },
+      {
+        label: "View Survey Data — 201 Responses",
+        url: "https://docs.google.com/spreadsheets/d/18-QDQGlYy9g6b3hyjKL2BOw92FS2Kbtb/edit?usp=sharing&ouid=102278314716249556670&rtpof=true&sd=true"
+      }
+    ]
+  },
   {
     title: "Olivar Design",
     category: "Architecture Business Digital Strategy",
@@ -14,6 +57,7 @@ const projects = [
     ],
     tools: "Product Strategy, UX Strategy, Digital UI Design, AI Leverage",
     image: "/images/olivar_design.png",
+    link: "https://olivardesign.com/",
   },
   {
     title: "HR Digital Platform",
@@ -118,17 +162,84 @@ const Work = () => {
                         <h3>0{index + 1}</h3>
                       </div>
                       <div className="carousel-details">
-                        <h4>{project.title}</h4>
+                        {project.status && (
+                          <div className="project-status-badge">
+                            {project.status}
+                          </div>
+                        )}
+                        <h4>
+                          {project.link ? (
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="work-title-link"
+                              data-cursor="disable"
+                            >
+                              {project.title}{" "}
+                              <MdArrowForward
+                                style={{
+                                  transform: "rotate(-45deg)",
+                                  display: "inline-block",
+                                  fontSize: "22px",
+                                  verticalAlign: "middle",
+                                }}
+                              />
+                            </a>
+                          ) : (
+                            project.title
+                          )}
+                        </h4>
                         <p className="carousel-category">
                           {project.category}
                         </p>
                         <div className="carousel-description">
                           {project.description.map((paragraph, i) => (
                             <p key={i}>
-                              {i === 0 ? <strong>{paragraph}</strong> : paragraph}
+                              {i === 0 && project.description.length > 1 ? (
+                                <strong>{paragraph}</strong>
+                              ) : (
+                                paragraph
+                              )}
                             </p>
                           ))}
                         </div>
+
+                        {/* Prominent Key Stats Display */}
+                        {project.stats && (
+                          <div className="carousel-stats">
+                            {project.stats.map((stat, i) => (
+                              <div key={i} className="carousel-stat-card">
+                                <span>{stat}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* External Action Links (e.g. PDF & Survey Data) */}
+                        {project.links && (
+                          <div className="carousel-action-links">
+                            {project.links.map((action, i) => (
+                              <a
+                                key={i}
+                                href={action.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="carousel-action-button"
+                                data-cursor="disable"
+                              >
+                                {action.label}{" "}
+                                <MdArrowForward
+                                  style={{
+                                    transform: "rotate(-45deg)",
+                                    fontSize: "16px",
+                                  }}
+                                />
+                              </a>
+                            ))}
+                          </div>
+                        )}
+
                         <div className="carousel-tools">
                           <span className="tools-label">Exposure</span>
                           <p>{project.tools}</p>
@@ -139,6 +250,7 @@ const Work = () => {
                       <WorkImage
                         image={project.image}
                         alt={project.title}
+                        link={project.link}
                       />
                     </div>
                   </div>
@@ -152,8 +264,9 @@ const Work = () => {
             {projects.map((_, index) => (
               <button
                 key={index}
-                className={`carousel-dot ${index === currentIndex ? "carousel-dot-active" : ""
-                  }`}
+                className={`carousel-dot ${
+                  index === currentIndex ? "carousel-dot-active" : ""
+                }`}
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to project ${index + 1}`}
                 data-cursor="disable"
